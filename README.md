@@ -15,7 +15,7 @@ Venus OS service for MPP Solar / Voltronic inverters. This project emulates a **
 
 The system is designed with a "Safety First" approach using a dedicated Watchdog script:
 
-1.  **Event 00/A (Module Failure)**: If `dbus-multirs-emulator.py` is not running, the Watchdog checks the inverter state. If it's not in the **user's preferred mode**, it forces the switch (e.g., to LIB) to ensure the battery BMS or internal logic takes back control.
+1.  **Event A (Module Failure)**: If `dbus-multirs-emulator.py` is not running, the Watchdog checks the inverter state. If it's not in the **user's preferred mode**, it forces the switch (e.g., to LIB) to ensure the battery BMS or internal logic takes back control.
 2.  **Event B (System Shutdown)**: On Venus OS shutdown, the Watchdog performs an aggressive port intercept (using `fuser -k`) and sends the command to restore the user's defined safe mode before the USB power is cut.
 3.  **Automatic Recovery**: When the emulator starts, it restores the **USER mode** (PBT02) only if DVCC is active and the system is ready for external control.
 
